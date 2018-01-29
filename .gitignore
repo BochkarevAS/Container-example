@@ -1,0 +1,5 @@
+.gitignore
+.idea/
+Test Results - UnitTest.html
+composer.lock
+vendor/
