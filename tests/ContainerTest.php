@@ -47,7 +47,7 @@ class ContainerTest extends TestCase {
         $this->assertInstanceOf('Ant', $ant);
     }
 
-    function testDependenciesContainer() {
+    public function testDependenciesContainer() {
         $container = new Container();
         $baz = $container->make(Baz::class);
         $this->assertInstanceOf('Baz', $baz);
