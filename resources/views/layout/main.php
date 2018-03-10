@@ -1,21 +1,24 @@
 <html>
 
-<head></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="/resources/css/show.css">
+    <script src="/resources/js/show.js"></script>
+</head>
 
 <body>
 
     <?php if (isset($_SESSION['user'])) : ?>
-        <a href="/user/logout">Выход</a>
+        <a href="/security/logout">Выход</a>
     <?php else : ?>
-        <a href="/user/registration">Регестрация</a>
-        <a href="/user/login">Вход</a>
+        <a href="/security/registration">Регестрация</a>
+        <a href="/security/login">Вход</a>
     <?php endif; ?>
+
+    <hr>
 
     <?php if (isset($content)) : ?>
         <?= $content ?>
     <?php endif; ?>
-
-    <script src="/resources/js/main.js"></script>
 
 </body>
 </html>

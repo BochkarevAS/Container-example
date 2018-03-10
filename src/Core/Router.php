@@ -4,31 +4,29 @@ namespace Example\Core;
 
 class Router {
 
-    private $routes = [
-        'user/registration' => ['Example\Controller\RegistrationController', 'indexAction'],
-        'user/logout' => ['Example\Controller\SecurityController', 'logoutAction'],
-        'user/login' => ['Example\Controller\SecurityController', 'loginAction']
-    ];
+    private $routes = [];
 
     private $container;
 
-    public function __construct(Container $container) {
+    public function __construct(Container $container, $routes) {
         $this->container = $container;
+        $this->routes = $routes;
     }
 
-    public function run($uri = 'user/registration') {
+    public function run() {
         $uri = trim($_SERVER['REQUEST_URI'], '/');
-        $val = 0;
 
-        foreach ($this->routes as $route => $value) {
+        foreach ($this->routes as $route => $callable) {
 
-            if (preg_match("~$route~", $uri, $matches)) {
-                $object = $this->container->make($value[0]);
-                $method = $value[1];
-                $val = $object->$method();
+            if (preg_match("~^$route$~", $uri, $matches)) {
+                $callable[0] = $this->container->make($callable[0]);
+                $matches[] = $this->container->make(Request::class); // Для того чтобы последний параметр был типа Request
+                unset($matches[0]); // Убераю от туда путь ...
+
+                return call_user_func_array($callable, $matches);
             }
         }
 
-        return $val;
+        throw new \HttpException('Not found', 404);
     }
 }

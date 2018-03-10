@@ -11,7 +11,7 @@ class Controller {
     }
 
     public function render($templateName, array $data = [], $layoutName = 'layout/main') {
-        $view = $this->container->autoResolve(View::class);
+        $view = $this->container->make(View::class);
         return $view->render($templateName, $data, $layoutName);
     }
 }

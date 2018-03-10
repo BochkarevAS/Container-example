@@ -1,5 +1,7 @@
+.idea
+vendor
 .gitignore
-.idea/
 Test Results - UnitTest.html
+UploadedFiles/
 composer.lock
-vendor/
+tests/Test Results - UnitTest.html

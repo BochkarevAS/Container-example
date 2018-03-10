@@ -1,5 +1,7 @@
 <?php
 
+
+
 return [
     'host' => 'localhost',
     'dbname' => 'farpost',

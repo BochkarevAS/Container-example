@@ -23,4 +23,5 @@ class Db {
 
         return $result;
     }
+
 }

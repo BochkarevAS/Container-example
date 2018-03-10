@@ -28,7 +28,7 @@ class Container {
 
         if (array_key_exists($key, $this->bindings)) {
             $resolver = $this->bindings[$key];
-            return $this->instances[$key] = $resolver();
+            return $this->instances[$key] = $resolver($this);
         }
 
         if ($instance = $this->autoResolve($key)) {

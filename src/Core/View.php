@@ -24,4 +24,5 @@ class View {
 
         return $out;
     }
+
 }

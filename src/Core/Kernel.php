@@ -28,4 +28,5 @@ class Kernel {
         $router = $this->container->make(Router::class);
         echo $router->run();
     }
+
 }
