@@ -35,4 +35,12 @@ class AdminController extends Controller {
         header('Location: /message/show');
     }
 
+    public function isAdminAction(Request $request) {
+        $id = $request->post('id');
+
+        $adminRepository = $this->container->make(AdminRepository::class);
+        $adminRepository->isAdminAction($id);
+
+        header('Location: /message/show');
+    }
 }

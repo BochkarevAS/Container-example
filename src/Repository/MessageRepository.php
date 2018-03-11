@@ -10,7 +10,7 @@ class MessageRepository extends Db {
         $list['admin'] = isset($_SESSION['admin']) ? $_SESSION['admin'] : false;
 
         $sql = "
-            SELECT m.id, m.message, u.email, m.date::date dt, i.img
+            SELECT m.id, m.message, u.email, m.date::date dt, i.img, m.upadmin, m.isadmin
             FROM message.mess m
             JOIN users u ON (u.id=m.uid)
             LEFT JOIN image i ON (i.uid=m.id)

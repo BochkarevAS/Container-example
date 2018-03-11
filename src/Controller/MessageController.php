@@ -15,7 +15,7 @@ class MessageController extends Controller {
     public function showAjaxAction() {
         $sort = isset($_POST['sort']) ? $_POST['sort'] : 'm.date::date';
 
-        $message = $this->container->make(Message::class);  // Уточнить
+        $message = $this->container->make(Message::class);
         $message = $message->getMessage($sort);
 
         echo json_encode($message);
@@ -26,7 +26,7 @@ class MessageController extends Controller {
         $mess = $request->post('message');
         $uid = $_SESSION['user'];
 
-        $message = $this->container->make(Message::class);  // Уточнить
+        $message = $this->container->make(Message::class);
         $message->addMessage($mess, $uid);
 
         header('Location: /message/show');

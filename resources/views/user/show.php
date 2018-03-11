@@ -6,6 +6,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
     </thead>
     <tbody id="tbody"></tbody>
 </table>
