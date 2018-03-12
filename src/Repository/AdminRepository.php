@@ -33,10 +33,13 @@ class AdminRepository extends Db {
         $this->query($sql, ['id' => $id]);
     }
 
-    public function addImageAction($id, $makeSeed) {
+    public function addImageAction($id) {
         $file = $_FILES['file'];
         $uploaddir = dirname($_SERVER['SCRIPT_FILENAME']) . "/UploadedFiles/";
         list ($width, $height, $type, $attr) = getimagesize($file['tmp_name']);
+
+        list ($usec, $sec) = explode(' ', microtime());
+        $makeSeed = $sec . (int)($usec * 100000);
 
         $year = date("Y");
         $month = date("m");

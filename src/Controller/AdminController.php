@@ -35,11 +35,8 @@ class AdminController extends Controller {
     }
 
     public function addImageAction($id) {
-        list ($usec, $sec) = explode(' ', microtime());
-        $makeSeed = $sec . (int)($usec * 100000);
-
         $adminRepository = $this->container->make(AdminRepository::class);
-        $adminRepository->addImageAction($id, $makeSeed);
+        $adminRepository->addImageAction($id);
 
         header('Location: /admin/show/1');
     }
