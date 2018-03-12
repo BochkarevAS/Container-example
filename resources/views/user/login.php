@@ -1,6 +1,6 @@
 <?php if (!isset($_SESSION['user'])) : ?>
 
-    <?= $message ?>
+    <?= $error ?>
 
     <form action="" method="POST">
         <table>

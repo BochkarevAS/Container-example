@@ -15,49 +15,44 @@ class Security {
     }
 
     public function registration($email, $password, $submit) {
+        $valid = false;
 
         if ($submit) {
             $registration = $this->container->make(SecurityRepository::class);
-            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $validate = $this->container->make(Validate::class);
+            $valid = $validate->isValid($email, $password);
 
-            if (!$registration->doesEmailAlreadyExist($email)) {
-                $uid = $registration->createUser($email, $hash, $submit);
+            if (!$registration->doesEmailAlreadyExist($email) && !$valid) {
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $uid = $registration->createUser($email, $hash);
                 $_SESSION['user'] = $uid;
-
-                return false;
             }
-
-            return 'Такой email существует';
         }
 
-        return 'Регестрация';
+        return $valid;
     }
 
     public function login($email, $password, $submit) {
 
         if ($submit) {
-            $uid = 0;
             $login = $this->container->make(SecurityRepository::class);
-            $hash = $login->doesHashEmailExist($email);
 
-            if (password_verify($password, $hash)) {
+            if (password_verify($password, $login->doesHashEmailExist($email))) {
                 $uid = $login->getEmail($email);
-            }
-
-            if ($uid == 1) { // Значит админ
-                $_SESSION['admin'] = $uid;
-
-                return $this->container->make(RoleRepository::class)->getRolePerms($uid);
-            }
-
-            if ($uid) {
-                $_SESSION['user'] = $uid;
+            } else {
                 return false;
             }
 
-            return 'Не верный email или пароль';
+            if ($uid == 1) {    // Значит админ
+                $_SESSION['admin'] = $uid;
+                // $this->container->make(RoleRepository::class)->getRolePerms($uid);
+            } else {
+                $_SESSION['user'] = $uid;
+            }
+
+            return true;
         }
 
-        return 'Авторизация';
+        return false;
     }
 }

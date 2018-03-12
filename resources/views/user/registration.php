@@ -1,8 +1,8 @@
 <?php if (!isset($_SESSION['user'])) : ?>
 
-    <?= $error ?>
+    <?= isset($error) ? $error : '' ?>
 
-    <form action="" method="POST">
+    <form action="/security/registration" method="POST">
         <table>
             <tbody>
                 <tr>

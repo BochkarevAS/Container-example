@@ -6,7 +6,7 @@ use Example\Core\Db;
 
 class SecurityRepository extends Db {
 
-    public function createUser($email, $password, $code) {
+    public function createUser($email, $password, $code = 777) {
         $sql = "INSERT INTO users (password, email, code) VALUES (:password, :email, :code) RETURNING id";
         $result = $this->query($sql, ['email' => $email, 'password' => $password, 'code' => $code,]);
 

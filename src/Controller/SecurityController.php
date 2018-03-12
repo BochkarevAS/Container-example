@@ -16,7 +16,7 @@ class SecurityController extends Controller {
         $security = $this->container->make(Security::class);
         $error = $security->registration($email, $password, $submit);
 
-        if (!$error) {
+        if (isset($_SESSION['user'])) {
             header('Location: /message/show');
             die();
         }
@@ -31,20 +31,20 @@ class SecurityController extends Controller {
         $password = $request->post('password');
         $submit = $request->post('submit');
 
-        $security = $this->container->make(Security::class); // Не забыть уточнить !!!
-        $message = $security->login($email, $password, $submit);
+        $security = $this->container->make(Security::class);
+        $error = $security->login($email, $password, $submit);
 
-        if (!$message && !is_array($message)) {
+        if (isset($_SESSION['user'])) {
             return $this->render('user/show');
         }
 
-        if (is_array($message)) {
+        if (isset($_SESSION['admin'])) {
             header('Location: /admin/show/1');
             die();
         }
 
         return $this->render('user/login', [
-            'message' => $message
+            'error' => $error
         ]);
     }
 
