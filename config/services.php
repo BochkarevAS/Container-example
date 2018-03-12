@@ -38,3 +38,6 @@ $container->bind(\Example\Service\Message::class, function ($c) {
 $container->instance(\Example\Middleware\AuthMiddleware::class,
     new \Example\Middleware\AuthMiddleware()
 );
+$container->instance(\Example\Middleware\ShowMiddleware::class,
+    new \Example\Middleware\ShowMiddleware()
+);
