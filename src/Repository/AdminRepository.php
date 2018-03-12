@@ -6,6 +6,18 @@ use Example\Core\Db;
 
 class AdminRepository extends Db {
 
+    public function showAction($sort) {
+        $sql = "
+            SELECT m.date::date dt, u.email, m.message, m.id, i.img, m.upadmin, m.isadmin
+            FROM message.mess m
+            JOIN users u ON (u.id=m.uid)
+            LEFT JOIN image i ON (i.uid=m.id)
+            ORDER BY $sort ASC";
+        $result = $this->query($sql);
+
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function updateAction($message, $id) {
         $sql = "UPDATE message.mess SET message=:message, upadmin=true WHERE id=:id";
         $this->query($sql, ['message' => $message, 'id' => $id]);

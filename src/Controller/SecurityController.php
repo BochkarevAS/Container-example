@@ -39,9 +39,8 @@ class SecurityController extends Controller {
         }
 
         if (is_array($message)) {
-            return $this->render('user/show');
-//            header('Location: /message/show?admin=1'); // ???
-//            die();
+            header('Location: /admin/show/1');
+            die();
         }
 
         return $this->render('user/login', [

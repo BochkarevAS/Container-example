@@ -45,8 +45,7 @@ class Security {
             }
 
             if ($uid == 1) { // Значит админ
-                $_SESSION['user'] = $uid;
-                $_SESSION['admin'] = true;
+                $_SESSION['admin'] = $uid;
 
                 return $this->container->make(RoleRepository::class)->getRolePerms($uid);
             }

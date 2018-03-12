@@ -34,3 +34,7 @@ $container->bind(\Example\Service\Security::class, function ($c) {
 $container->bind(\Example\Service\Message::class, function ($c) {
     return new \Example\Service\Message($c);
 });
+// Middleware
+$container->instance(\Example\Middleware\AuthMiddleware::class,
+    new \Example\Middleware\AuthMiddleware()
+);

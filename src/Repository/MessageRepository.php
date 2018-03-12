@@ -7,8 +7,6 @@ use Example\Core\Db;
 class MessageRepository extends Db {
 
     public function getMessage($sort) {
-        $list['admin'] = isset($_SESSION['admin']) ? $_SESSION['admin'] : false;
-
         $sql = "
             SELECT m.id, m.message, u.email, m.date::date dt, i.img, m.upadmin, m.isadmin
             FROM message.mess m
@@ -17,11 +15,7 @@ class MessageRepository extends Db {
             ORDER BY $sort ASC";
         $result = $this->query($sql);
 
-        while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
-            $list[] = $row;
-        }
-
-        return $list;
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function addMessage($message, $uid) {

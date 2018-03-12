@@ -7,7 +7,7 @@
 
 <body>
 
-    <?php if (isset($_SESSION['user'])) : ?>
+    <?php if (isset($_SESSION['user']) || isset($_SESSION['admin'])) : ?>
         <a href="/security/logout">Выход</a>
     <?php else : ?>
         <a href="/security/registration">Регестрация</a>

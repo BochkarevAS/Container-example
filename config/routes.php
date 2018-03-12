@@ -12,5 +12,6 @@ return [
     'admin/addImage/([0-9]+)' => ['Example\Controller\AdminController', 'addImageAction'],
     'admin/delete/([0-9]+)' => ['Example\Controller\AdminController', 'deleteAction'],
     'admin/isAdmin' => ['Example\Controller\AdminController', 'isAdminAction'],
+    'admin/show/([0-9]+)' => ['Example\Controller\AdminController', 'showAction'],
     '' => ['Example\Controller\SecurityController', 'registrationAction']
 ];

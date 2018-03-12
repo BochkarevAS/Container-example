@@ -3,10 +3,7 @@
         <th><a href="javascript:void(0)" id="message">Сообщение</a></th>
         <th><a href="javascript:void(0)" id="email">Email</a></th>
         <th><a href="javascript:void(0)" id="date">Дата</a></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>Изображения</th>
     </thead>
     <tbody id="tbody"></tbody>
 </table>
