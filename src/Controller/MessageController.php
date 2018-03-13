@@ -12,8 +12,8 @@ class MessageController extends Controller {
         return $this->render('user/show');
     }
 
-    public function showAjaxAction() {
-        $sort = isset($_POST['sort']) ? $_POST['sort'] : 'm.date::date';
+    public function showAjaxAction(Request $request) {
+        $sort = $request->post('sort');
 
         $message = $this->container->make(Message::class);
         $message = $message->getMessage($sort);

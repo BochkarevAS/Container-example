@@ -61,7 +61,7 @@ window.onload = function () {  // Не использую jQuery потому ч
         return false;
     }
 
-    if (tf !== null && message != null && email !== null || date !== null) {
+    if (tf !== null && message !== null && email !== null || date !== null) {
 
         document.getElementById('tf').addEventListener('submit', function (evt) {
             evt.preventDefault();
